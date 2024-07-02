@@ -5,7 +5,7 @@ function getLocation(ip) {
 		if (lookup) {
 			resolve(lookup);
 		} else {
-			reject("error could not find ip from getLocation");
+			reject("npm error could not find ip from getLocation");
 		}
 	})
 		.then(function (location) {
