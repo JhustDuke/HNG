@@ -1,7 +1,7 @@
 const app = require("express")();
 const port = process.env.PORT || 3000;
 const geo = require("geoip-lite");
-//const getLocation = require("./getLocation");
+const getLocation = require("./getLocation");
 const getWeather = require("./getWeather");
 
 app.get("/", async function (req, res, next) {
