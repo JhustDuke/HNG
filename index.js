@@ -2,15 +2,11 @@ const app = require("express")();
 const port = process.env.PORT || 3000;
 const getLocation = require("./getLocation");
 const getWeather = require("./getWeather");
-const geo = require("geoip-lite");
 
 app.get("/", async function (req, res, next) {
-	let visitorName = "visitor";
-	if (req.query.name) {
-		visitorName = req.query.name;
-	}
+	let visitorName = req.query.name || "visitor";
 
-	const ip = req.socket.remoteAddress;
+	const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
 	try {
 		const locale = await getLocation(ip);
