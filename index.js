@@ -3,7 +3,11 @@ const port = process.env.PORT || 3000;
 const getLocation = require("./getLocation");
 const getWeather = require("./getWeather");
 
-app.get("/", async function (req, res, next) {
+app.get("/", function (req, res) {
+	const homepage = "<center/> this is the home page <center/>";
+	res.send(homepage);
+});
+app.get("/api/hello", async function (req, res, next) {
 	let visitorName = req.query.visitors_name || "Mark";
 
 	let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
