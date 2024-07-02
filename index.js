@@ -1,18 +1,17 @@
 const app = require("express")();
 const port = process.env.PORT || 3000;
-const geo = require("geoip-lite");
 const getLocation = require("./getLocation");
 const getWeather = require("./getWeather");
 
-app.get("api/hello", async function (req, res, next) {
-	let visitorName = req.query.visitors_name || "visitor";
+app.get("/", async function (req, res, next) {
+	let visitorName = req.query.visitors_name || "Mark";
 
-	const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-	const clientIp = ip.split(",")[0].trim();
+	let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+	ip = ip.split(",")[0].trim();
 	console.log("this is the ip: ", ip);
 
 	try {
-		const locale = await getLocation(clientIp);
+		const locale = await getLocation(ip);
 		console.log("this is locale: ", locale);
 
 		if (!locale) {
