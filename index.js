@@ -4,12 +4,13 @@ const geo = require("geoip-lite");
 const getLocation = require("./getLocation");
 const getWeather = require("./getWeather");
 
-app.get("/api/hello", async function (req, res, next) {
+app.get("api/hello", async function (req, res, next) {
 	let visitorName = req.query.visitors_name || "visitor";
 
 	const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 	const clientIp = ip.split(",")[0].trim();
 	console.log("this is the ip: ", ip);
+
 	try {
 		const locale = await getLocation(clientIp);
 		console.log("this is locale: ", locale);
