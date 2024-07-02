@@ -4,8 +4,8 @@ const geo = require("geoip-lite");
 const getLocation = require("./getLocation");
 const getWeather = require("./getWeather");
 
-app.get("/", async function (req, res, next) {
-	let visitorName = req.query.name || "visitor";
+app.get("/api/hello", async function (req, res, next) {
+	let visitorName = req.query.visitors_name || "visitor";
 
 	const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 	const clientIp = ip.split(",")[0].trim();
