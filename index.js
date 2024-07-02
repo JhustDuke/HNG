@@ -5,7 +5,7 @@ const getWeather = require("./getWeather");
 const geo = require("geoip-lite");
 
 app.get("/", async function (req, res, next) {
-	let visitorName = req.query.visitor_name || "visitor";
+	let visitorName = "visitor";
 	if (req.query.name) {
 		visitorName = req.query.name;
 	}
