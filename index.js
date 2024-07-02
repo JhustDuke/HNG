@@ -9,6 +9,7 @@ app.get("/", async function (req, res, next) {
 	if (req.query.name) {
 		visitorName = req.query.name;
 	}
+
 	const ip = req.socket.remoteAddress;
 
 	try {
