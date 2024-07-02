@@ -8,9 +8,10 @@ app.get("/", async function (req, res, next) {
 	let visitorName = req.query.name || "visitor";
 
 	const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+	const clientIp = ip.split(",")[0].trim();
 	console.log("this is the ip: ", ip);
 	try {
-		const locale = geo.lookup(ip);
+		const locale = await getLocation(clientIp);
 		console.log("this is locale: ", locale);
 
 		if (!locale) {
